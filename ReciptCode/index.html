@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div id="receipt">
+        <div class="up">
+            <p style="text-align: left;">GSTIN: 10FPDPS7878D1ZN</p>
+            <p style="text-align: end;">Phone: 9912420224</p>
+        </div>
+        <h1>KUNDAN BIKE POINT SERVICE</h1>
+        <p>Sangrampur More (Munger)</p>
+        <form id="receiptForm">
+            <br>
+            <div>
+                <label>No: <input type="text" name="number"></label>
+            </div>
+            <br>
+            <div>
+                <label>Name: <input type="text" name="name"></label>
+            </div>
+            <br>
+            <div>
+                <label>Address: <input type="text" name="address"></label>
+            </div>
+            <br>
+            <table id="particularsTable">
+                <thead>
+                    <tr>
+                        <th>Particulars</th>
+                        <th>Qty.</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="particulars"></td>
+                        <td><input type="number" name="qty" class="qty" onchange="calculateTotal()"></td>
+                        <td><input type="number" name="rate" class="rate" onchange="calculateTotal()"></td>
+                        <td><input type="number" name="amount" class="amount" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <div>
+                <label>Total: <input type="number" name="total" readonly></label>
+            </div>
+            <br>
+            <div>
+                <label>Adv: <input type="number" name="advance" value="0" onchange="calculateTotal()"></label>
+            </div>
+            <br>
+            <div>
+                <label>Dues: <input type="number" name="dues" readonly></label>
+            </div>
+            <br>
+            <div>
+                <label>Rs. (in words): <input type="text" name="amountInWords" ></label>
+            </div>
+            <br>
+            <div style="text-align: right; position: relative; bottom: 0;">
+                <label>Signature: <input type="file" id="signatureUpload" onchange="previewSignature()"></label>
+                <br>
+                <img id="signaturePreview" style="display:none;" width="100">
+            </div>
+            <br>
+            <br>
+            <button type="button" onclick="generatePDF()">Download PDF</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
